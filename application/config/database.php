@@ -79,18 +79,19 @@ $query_builder = TRUE;
     Treinamento: 10.4.225.131 (usuário: user_auditbd / auditbddesenv)
     Produção: 10.4.225.129 (usuário: user_auditbd / auditbdprod)
 
- * 
+ *
  *  */
-
-
+//podcast_mlt
+//podcast_mlt_user
+//(e#tw2qAZ2OE
 $db['default'] = array(
 	//'dsn'      => 'pgsql:host=10.4.225.133;port=5432;dbname=BD_ESTATISTICA',
-	'hostname' => '10.4.225.133',
-	'username' => 'user_auditbd',
-	'password' => 'userauditbddesenv',
-	'database' => 'BD_AUDITORIA',
-	//'dbdriver' => 'mysqli',
-	'dbdriver' => 'postgre',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'podcast',
+	'dbdriver' => 'mysqli',
+	//'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

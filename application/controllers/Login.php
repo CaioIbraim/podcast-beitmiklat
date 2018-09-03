@@ -11,46 +11,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author 13125877
  */
-class Login extends CI_Controller{
+class Login extends MY_Controller{
    //put your code here
 
    public function __construct() {
       parent::__construct();
-      $this->load->helper(array('form', 'url'));
-      $this->load->helper('text');
-      $this->load->library('form_validation');
-      $this->load->library('parser'); //template
-      $this->load->library('utilidades'); //library
-      $this->form_validation->set_error_delimiters('<div class="alert alert-warning"><strong>Atenção! </strong>', '</div>');
-
-      //Configurando mensagens de erro
-      $this->form_validation->set_message('min_length' ,  '{field} deve ter pelo menos {param} caracteres.');
-      $this->form_validation->set_message('max_length' ,  '{field} deve ter até {param} caracteres.');
-      $this->form_validation->set_message('required'   ,  '{field} é um campo obrigatório.');
-      $this->form_validation->set_message('valid_email',  '{field} deve conter um email válido.');
-      $this->form_validation->set_message('matches',      '{field} deve ser igual ao campo {param}.');
-
    }
 
 public function index(){
+        $this->form_validation->set_rules('password', 'Senha', 'trim|required|max_length[8]|min_length[3]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->data['erros']       = '';
 
-      $this->form_validation->set_rules('username', 'Usuário', 'required');
-      $this->form_validation->set_rules('password', 'Senha', 'trim|required|max_length[8]|min_length[3]');
-      $this->form_validation->set_rules('passconf', 'Confirmar Senha', 'trim|required|matches[password]');
-      $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        if ($this->form_validation->run() == FALSE){
+           $this->data['conteudo'] = $this->parser->parse('telas/login/form', $this->data, true);
+        }
+        else{
+            //cadastrar usuario
+            $this->load->model('Crud_Model', 'l');
+            $data = $this->input->post();
+            //Verificar se o email informado já está cadastrado
+            $query =   $this->l->select_where('email',$data['email'],'login');
+            if(count($query) > 0){
+                //Se o email já existir no banco de dados retorno um erro para a tela do login
+                $data['password'] = MD5($data['password']);
+                if($query[0]['password'] === $data['password']){
+                  $this->data['conteudo'] = $this->parser->parse('telas/default/formsuccess', $this->data, true);
+                }else{
+                  $this->data['erros']       = 'A email ou senha informados não estão corretos.';
+                  $this->data['conteudo'] = $this->parser->parse('telas/login/form', $this->data, true);
+                }
+            }else{
+                $this->data['erros']       = 'O email informado não foi encontrado.';
+                $this->data['conteudo'] = $this->parser->parse('telas/login/form', $this->data, true);
+            }
+        }
 
-
-      $this->data['title']       = 'Junte-se a nós!';
-
-
-
-      if ($this->form_validation->run() == FALSE){
-         $this->data['conteudo'] = $this->parser->parse('telas/login/form', $this->data, true);
-      }
-      else{
-         $this->data['conteudo'] = $this->parser->parse('telas/default/formsuccess', $this->data, true);
-      }
-      $this->parser->parse('layout/blanc', $this->data);
+$this->parser->parse('layout/blanc', $this->data);
 }
 
 
@@ -86,6 +83,11 @@ public function censurar($string = ""){
     'xvideos.com',
     'xvideos.net',
     'porntube.com',
+    '<script>',
+    '</script>',
+    'DROP',
+    'drop',
+    '--'
 );
   $string = word_censor($string, $disallowed, '[CENSURADO]');
   echo $string;
