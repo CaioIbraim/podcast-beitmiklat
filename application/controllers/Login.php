@@ -28,10 +28,10 @@ public function index(){
         }
         else{
             //cadastrar usuario
-            $this->load->model('Crud_Model', 'l');
+            $this->load->model('Crud_Model');
             $data = $this->input->post();
             //Verificar se o email informado já está cadastrado
-            $query =   $this->l->select_where('email',$data['email'],'login');
+            $query =   $this->Crud_Model->select_where('email',$data['email'],'login');
             if(count($query) > 0){
                 //Se o email já existir no banco de dados retorno um erro para a tela do login
                 $data['password'] = MD5($data['password']);
