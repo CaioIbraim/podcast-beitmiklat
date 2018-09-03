@@ -33,18 +33,13 @@
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>#programacao">Programação</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>assinar">Assinar</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account">Assinar</a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login">Logar</a>
             </li>
 
-            
-
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>upload">Upload</a>
-            </li>
 
 
           </ul>
@@ -75,7 +70,7 @@
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">
-        Copyright &copy; Your Website 2018
+        Copyright &copy; Beit Miklat 2018
       </div>
     </footer>
 

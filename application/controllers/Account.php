@@ -11,25 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author 13125877
  */
-class Account extends CI_Controller{
+class Account extends MY_Controller{
    //put your code here
 
    public function __construct() {
       parent::__construct();
-      $this->load->helper(array('form', 'url'));
-      $this->load->helper('text');
-      $this->load->library('form_validation');
-      $this->load->library('parser'); //template
-      $this->load->library('utilidades'); //library
-      $this->form_validation->set_error_delimiters('<div class="alert alert-warning"><strong>Atenção! </strong>', '</div>');
-
-      //Configurando mensagens de erro
-      $this->form_validation->set_message('min_length' ,  '{field} deve ter pelo menos {param} caracteres.');
-      $this->form_validation->set_message('max_length' ,  '{field} deve ter até {param} caracteres.');
-      $this->form_validation->set_message('required'   ,  '{field} é um campo obrigatório.');
-      $this->form_validation->set_message('valid_email',  '{field} deve conter um email válido.');
-      $this->form_validation->set_message('matches',      '{field} deve ser igual ao campo {param}.');
-
    }
 
 public function index(){
@@ -40,7 +26,6 @@ public function index(){
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
 
-      $this->data['title']       = 'Junte-se a nós!';
       $this->data['erros']       = '';
 
 

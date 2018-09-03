@@ -18,7 +18,6 @@
   </head>
 
   <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -54,17 +53,10 @@
         <div class="mx-auto text-center">
           <h1 class="mx-auto my-0 text-uppercase">Em Breve</h1>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">Por essa razão, desde o dia em que o ouvimos, não deixamos de orar por vocês e de pedir que sejam cheios do pleno conhecimento da vontade de Deus, com toda a sabedoria e entendimento espiritual." (Colossenses 1:9)</h2>
-          <a href="<?= base_url(); ?>login" class="btn btn-primary js-scroll-trigger">Cadsatre-se</a>
+          <a href="<?= base_url(); ?>account" class="btn btn-primary js-scroll-trigger">Cadsatre-se</a>
         </div>
       </div>
     </header>
-
-    <!-- About Section -->
-    <section id="about" class="about-section text-center">
-      <div class="container">
-        <img src="<?= base_url(); ?>/theme/gray/img/ipad.png" class="img-fluid" alt="">
-      </div>
-    </section>
 
     <!-- Projects Section -->
     <section id="programacao" class="projects-section bg-light">
@@ -85,45 +77,6 @@
             </div>
           </div>
         </div>
-
-
-
-        <!-- Project One Row -->
-        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="<?= base_url(); ?>/theme/gray/img/demo-image-01.jpg" alt="">
-          </div>
-          <div class="col-lg-6">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div class="project-text w-100 my-auto text-center text-lg-left">
-                  <h4 class="text-white">Misty</h4>
-                  <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
-                  <hr class="d-none d-lg-block mb-0 ml-0">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Two Row -->
-        <div class="row justify-content-center no-gutters">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="<?= base_url(); ?>/theme/gray/img/demo-image-02.jpg" alt="">
-          </div>
-          <div class="col-lg-6 order-lg-first">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div class="project-text w-100 my-auto text-center text-lg-right">
-                  <h4 class="text-white">Mountains</h4>
-                  <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
-                  <hr class="d-none d-lg-block mb-0 mr-0">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -131,14 +84,12 @@
     <!-- Contact Section -->
     <section class="contact-section bg-black">
       <div class="container">
-
         <div class="row">
-
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Address</h4>
+                <h4 class="text-uppercase m-0">Endereço</h4>
                 <hr class="my-4">
                 <div class="small text-black-50">4923 Market Street, Orlando FL</div>
               </div>
@@ -152,7 +103,7 @@
                 <h4 class="text-uppercase m-0">Email</h4>
                 <hr class="my-4">
                 <div class="small text-black-50">
-                  <a href="#">hello@yourdomain.com</a>
+                  <a href="#">ibraim.caiofabio@gmail.com</a>
                 </div>
               </div>
             </div>
@@ -162,9 +113,9 @@
             <div class="card py-4 h-100">
               <div class="card-body text-center">
                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Phone</h4>
+                <h4 class="text-uppercase m-0">Telefone</h4>
                 <hr class="my-4">
-                <div class="small text-black-50">+1 (555) 902-8832</div>
+                <div class="small text-black-50">+55 (21) 99863-9055</div>
               </div>
             </div>
           </div>
@@ -188,7 +139,7 @@
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">
-        Copyright &copy; Your Website 2018
+        Copyright &copy; Beit Miklat 2018
       </div>
     </footer>
 
