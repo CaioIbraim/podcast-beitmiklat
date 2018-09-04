@@ -35,12 +35,12 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account">Assinar</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>podcast">Podcast</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login">Logar</a>
             </li>
-
-
 
           </ul>
         </div>
