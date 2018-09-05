@@ -75,11 +75,7 @@ $query_builder = TRUE;
 
 /*
 
-    Desenvolvimento: 10.4.225.133 (usuário: user_auditbd / userauditbddesenv)
-    Treinamento: 10.4.225.131 (usuário: user_auditbd / auditbddesenv)
-    Produção: 10.4.225.129 (usuário: user_auditbd / auditbdprod)
-
- *
+  
  *  */
 //podcast_mlt
 //podcast_mlt_user

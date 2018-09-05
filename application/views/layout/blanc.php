@@ -33,13 +33,13 @@
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>#programacao">Programação</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account">Assinar</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account/#projects">Assinar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>podcast">Podcast</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login">Logar</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login/#projects">Logar</a>
             </li>
 
           </ul>
