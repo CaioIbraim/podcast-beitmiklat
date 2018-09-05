@@ -73,15 +73,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-/*
-
-  
- *  */
 //podcast_mlt
 //podcast_mlt_user
 //(e#tw2qAZ2OE
 $db['default'] = array(
-	//'dsn'      => 'pgsql:host=10.4.225.133;port=5432;dbname=BD_ESTATISTICA',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
