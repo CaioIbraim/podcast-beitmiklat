@@ -28,12 +28,13 @@ class Admin extends MY_Controller{
    }
 
 public function index(){
-
-        $this->form_validation->set_rules('password', 'Senha', 'trim|required|max_length[8]|min_length[3]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->data['erros']  = '';
+        $this->form_validation->set_rules('password', 'Senha', 'trim|required|max_length[20]|min_length[3]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
 
         if ($this->form_validation->run() == FALSE){
+
            $this->data['conteudo'] = $this->parser->parse('telas/login/form', $this->data, true);
         }
         else{
@@ -70,13 +71,6 @@ $this->parser->parse('layout_admin/login', $this->data);
 
 public function main(){
 
-
-
-
-  if(!isset($_SESSION)){
-    redirect('admin/logout', 'refresh');
-  }
-
   if($_SESSION['perfil'] !== '0'){
       redirect('admin/logout', 'refresh');
   }
@@ -107,6 +101,10 @@ public function logout(){
 
 //Função para fazer upload de podcast
 public function uploadPodcast(){
+
+    if($_SESSION['perfil'] !== '0'){
+        redirect('admin/logout', 'refresh');
+    }
 
   $this->data['pg_header']    = "Upload";
   $this->data['description']  = "Tela para cadastro de podcast";
@@ -193,6 +191,11 @@ public function uploadPodcast(){
 
 //Função para fazer upload de podcast
 public function alterarPodcast($id){
+
+    if($_SESSION['perfil'] !== '0'){
+        redirect('admin/logout', 'refresh');
+    }
+
   $this->data['pg_header']    = "Alterar";
   $this->data['description']  = "Tela para alteração de podcast";
 
@@ -265,6 +268,10 @@ public function alterarPodcast($id){
 //carrega a tela com o filtro
 public function searchPodcast(){
 
+    if($_SESSION['perfil'] !== '0'){
+        redirect('admin/logout', 'refresh');
+    }
+
   $this->data['pg_header']    = "Buscar Podcast";
   $this->data['description']  = "Tela para alteração de podcast";
   $this->data['table']        = $this->table->generate();
@@ -276,6 +283,7 @@ public function searchPodcast(){
 
 //carrega a tabela
 public function tabela(){
+
       $this->data['title']  = $this->input->post('title');
       $this->data['cat'] = $this->input->post('cat');
       $this->data['status']  = $this->input->post('status');
