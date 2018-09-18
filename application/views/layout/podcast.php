@@ -5,7 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+
+    <meta property="og:title" content="{title}">
+    <meta property="og:site_name" content="Beit Miklat">
+    <meta property="og:description" content="{og_description}">
+
+    <meta property="og:image" content="{og_image}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="{og_image_width}">
+    <meta property="og:image:height" content="{og_image_height}">
+
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Caio Ibraim">
+    <meta property="article:section" content="Podcast">
+    <meta property="article:tag" content="{og_tag}">
+    <meta property="article:published_time" content="{og_data_hora}">
+
+
+    <meta name="author" content="Caio Ibraim">
     <title>{title}</title>
     <!-- Bootstrap core CSS -->
     <link href="<?= base_url(); ?>/theme/gray/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,9 +50,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="<?= base_url(); ?>">PODCAST</a>
+        <a class="navbar-brand js-scroll-trigger" href="<?= base_url(); ?>">{NAME}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -42,20 +60,17 @@
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#programacao">Programação</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>#programacao">Programação</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account/#projects">Assinar</a>
             </li>
-
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>podcast">Podcast</a>
             </li>
-
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login/#projects">Logar</a>
             </li>
-
           </ul>
         </div>
       </div>
@@ -148,9 +163,8 @@
        function proxima(){
            if(audio.canPlayType("audio/mp3") != ''){
                audio.src = musicas[i].mp3;
-           }else{
-               audio.src = musicas[i].ogg;
            }
+
            document.getElementById('nome_musica').innerHTML = musicas[i].titulo;
            audio.play();
 

@@ -3,6 +3,6 @@
    <div class="alert alert-success">
      <strong>Parabéns!</strong> Seu formulário foi submetido com sucesso!
    </div>
-  <?php echo anchor('{title}', 'Voltar!'); ?>
+  <?php echo anchor('admin/{ancora}', 'Voltar!'); ?>
 
 </div>

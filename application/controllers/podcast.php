@@ -10,61 +10,73 @@ class Podcast extends MY_Controller {
     //Função default
     public function index() {
         //Setar o coteúdo que deverá ser apresentado
-
         $this->data['conteudo']    = '';
-        $this->data['musicas']     = $this->getMusics();
 
+        $this->data['og_description']    = 'Compartilhamento de podcast Beit Miklat';
+        $this->data['og_image']          = 'http://beitmiklat-com-br.umbler.net/theme/gray/img/gray-wallpapers-1.jpg';
+        $this->data['og_image_width']    = '2560';
+        $this->data['og_image_height']   = '1440';
+        $this->data['og_data_hora']      = date("d/m/Y");
+        $this->data['og_tag']            = "Judaísmo, Podcast";
+
+        $this->data['musicas']     = $this->getMusics();
         $this->parser->parse('layout/podcast', $this->data);
     }
 
     public function getMusics(){
 
-      $url = base_url();
-      $array = [];
-      $myObj  = new \stdClass();
-      $myObj2 = new \stdClass();
+      $url    = base_url();
+      $array  = [];
+      $query  = $this->db->query("SELECT * FROM podcast WHERE status = 1 ")->result_array();
 
-      $myObj->mp3    = $url."uploads/mp3/gad_elbaz_mizmor_ldavid__hUv8Qy4pKNs.mp3";
-      $myObj->ogg    = $url."uploads/mp3/gad_elbaz_mizmor_ldavid__hUv8Qy4pKNs.ogg";
-      $myObj->titulo = "Mizmor le David";
+      for($i = 0; $i < count($query); $i++){
+            $myObj  = new \stdClass();
+            $myObj->mp3    = $url."".$query[$i]['mp3_url'];;
+            $myObj->titulo = $query[$i]['title'];
+            $var = $myObj;
+            array_push($array, $var);
+      }
 
-      $var1 = $myObj;
-      array_unshift($array, $var1);
-
-      $myObj2->mp3    = $url."uploads/mp3/omer_adam_modeh_ani_lyrics_zEgrqzmTwJs.mp3";
-      $myObj2->ogg    = $url."uploads/mp3/omer_adam_modeh_ani_lyrics_zEgrqzmTwJs.ogg";
-      $myObj2->titulo = "Modê Ani";
-
-      $var2 = $myObj2;
-      array_unshift($array, $var2);
-
-      $myJSON = json_encode(array_reverse($array));
-    return  $myJSON;
+      $myJSON = json_encode($array);
+      return   $myJSON;
     }
 
+    public function display($link){
+
+      $query  = $this->db->query("SELECT * FROM podcast WHERE link = '$link' ")->result_array();
+
+      if(count($query) === 0){
+        redirect('My404');
+      }
 
 
-    public function getMusics2(){
+      $this->data['title']             = $query[0]['title'];
+      $this->data['og_description']    = $query[0]['description'];
+      $this->data['og_image']          = 'http://beitmiklat-com-br.umbler.net/theme/gray/img/gray-wallpapers-1.jpg';
+      $this->data['og_image_width']    = '2560';
+      $this->data['og_image_height']   = '1440';
+      $this->data['og_data_hora']      = $query[0]['dt_include'];
+      $this->data['og_tag']            = $query[0]['tags'];
 
-      //$url = base_url();
-      $array = [];
 
-      $myObj->mp3    = $url."uploads/mp3/gad_elbaz_mizmor_ldavid__hUv8Qy4pKNs.mp3";
-      $myObj->ogg    = $url."uploads/mp3/gad_elbaz_mizmor_ldavid__hUv8Qy4pKNs.ogg";
-      $myObj->titulo = "Mizmor le David";
+      $this->data['conteudo']    = '';
+      $this->data['musicas']     = $this->getMusic($query);
+      $this->parser->parse('layout/podcast', $this->data);
+    }
 
-      $var1 = $myObj;
-      array_unshift($array, $var1);
+    public function getMusic($query){
 
-      $myObj2->mp3    = $url."uploads/mp3/omer_adam_modeh_ani_lyrics_zEgrqzmTwJs.mp3";
-      $myObj2->ogg    = $url."uploads/mp3/omer_adam_modeh_ani_lyrics_zEgrqzmTwJs.ogg";
-      $myObj2->titulo = "Modê Ani";
-
-      $var2 = $myObj2;
-      array_unshift($array, $var2);
-
-      $myJSON = json_encode(array_reverse($array));
-    return  $myJSON;
+      $url    = base_url();
+      $array  = [];
+       for($i = 0; $i < count($query); $i++){
+            $myObj  = new \stdClass();
+             $myObj->mp3    = $url."".$query[$i]['mp3_url'];;
+             $myObj->titulo = $query[$i]['title'];
+             $var = $myObj;
+             array_push($array, $var);
+       }
+       $myJSON = json_encode($array);
+       return   $myJSON;
     }
 
 

@@ -20,7 +20,7 @@
      <strong>Parabéns!</strong> Seu formulário foi submetido com sucesso!
    </div>
 
-  <?php echo anchor('myForm', 'Voltar!'); ?>
+  <?php echo anchor({ancora}, 'Voltar!'); ?>
 
 </div>
 

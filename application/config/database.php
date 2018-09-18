@@ -73,9 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-//podcast_mlt
-//podcast_mlt_user
-//(e#tw2qAZ2OE
+
 $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',

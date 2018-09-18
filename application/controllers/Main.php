@@ -12,6 +12,7 @@ class Main extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('parser'); //template
         $this->load->library('utilidades'); //library
+        $this->data['NAME'] = "BEIT MIKLAT";
         $this->data['url_pagina'] = base_url().''.$this->uri->segment(1);
  }
 

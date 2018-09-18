@@ -14,9 +14,12 @@ class MY_Controller extends CI_Controller {
         $this->load->library('utilidades'); //library
         $this->load->library('table');
 
-        $this->form_validation->set_error_delimiters('<div class="alert alert-warning"><strong>Atenção! </strong>', '</div>');
+        //$this->form_validation->set_error_delimiters('<div><strong>Atenção! </strong>', '</div>');
+        $name = md5('seg'.$_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']);
+        session_name();
+        session_cache_expire(1);//Define o tempo de sessão para 1  minutos
 
-        
+
         //Configurando mensagens de erro
         $this->form_validation->set_message('min_length' ,  '{field} deve ter pelo menos {param} caracteres.');
         $this->form_validation->set_message('max_length' ,  '{field} deve ter até {param} caracteres.');
@@ -27,6 +30,9 @@ class MY_Controller extends CI_Controller {
 
         //Inicia variáveis
         $this->data['title'] = ucfirst($this->uri->segment(1));
+
+
+        $this->data['NAME'] = "BEIT MIKLAT";
 
         //Manobra com tabelas
         $template = array('table_open' => '<table id="big_table" class="table table-striped table-bordered dataTable no-footer table-hover" role="grid" aria-describedby="datatable_info">' );
@@ -116,4 +122,125 @@ class MY_Controller extends CI_Controller {
                      </div>';
        return $select;
     }
+
+
+
+
+
+
+
+    public function do_upload($file,$name,$path){
+      $uploadOk = 1;
+      $msgAux = '';
+      $msg  = new \stdClass();
+
+      if(empty($file[$name]["name"])){
+        $msg->msg    = "Ops.";
+        $msg->status = 0;
+        return json_encode($msg);
+      }
+
+
+      $target_dir = "uploads/".$path."/";
+      $target_file = $target_dir . basename($file[$name]["name"]);
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+      // Check if image file is a actual image or fake image
+
+      // Check if file already exists
+      if (file_exists($target_file)) {
+          $uploadOk = 0;
+          $msgAux    .= " Desculpe, o arquivo já existe.";
+          $msg->status = 0;
+      }
+      // Check file size
+      if ($file[$name]["size"] > 50000000) {
+          $msgAux    .= " Desculpe, o tamanho do seu arquivo ultrapassa o limite permitido.";
+          $msg->status = 0;
+          $uploadOk = 0;
+      }
+      // Allow certain file formats
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+      && $imageFileType != "gif" && $imageFileType != "mp3" ) {
+          $msgAux    .= " Desculpe, apenas arquivos JPG, JPEG, PNG , GIF & mp3 são permitidos.";
+          $msg->status = 0;
+          $uploadOk = 0;
+      }
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+          $msgAux    .= " Desculpe, seus arquivos não foram carregados corretamente.";
+          $msg->status = 0;
+          // if everything is ok, try to upload file
+      } else {
+          if (move_uploaded_file($file[$name]["tmp_name"], $target_file)) {
+              $msgAux    .= " O arquivo  " . basename( $file[$name]["name"]). " foi enviado corretamente.";
+              $msg->status = 1;
+
+          } else {
+              $msgAux    .= " Desculpe, houve um erro no upload.";
+              $msg->status = 0;
+          }
+      }
+
+      $msg->msg = $msgAux;
+
+      return json_encode($msg);
+    }
+
+
+
+
+
+
+
+    public function username_check($str){
+       if ($str == 'test'){
+           $this->form_validation->set_message('username_check', 'O {field} Não pode conter a palavra "test"');
+           return FALSE;
+       }
+       else{
+          return TRUE;
+       }
+    }
+
+    public function censurar($string = ""){
+      $disallowed = array(
+        '.xxx',
+        '4tube.com',
+        'clickme.net',
+        'cnnamador.com',
+        'extremefuse.com',
+        'fakku.net',
+        'fux.com', //Com .br é de advogados
+        'heavy-r.com',
+        'kaotic.com',
+        'xhamster.com',
+        'porndoe.com',
+        'pornocarioca.com',
+        'rapebait.net',
+        'redtube.com',
+        'sex.com',
+        'vidmax.com',
+        'wipfilms.net',
+        'xvideos.com',
+        'xvideos.net',
+        'porntube.com',
+        '<script>',
+        '</script>',
+        'DROP',
+        'drop',
+        '--'
+    );
+      $string = word_censor($string, $disallowed, '[CENSURADO]');
+      echo $string;
+    }
+
+
+
+  ///Retorna Categorias
+
+  public function returnCategories(){
+      return $this->db->query("select * from category")->result_array();
+  }
+
+
 }

@@ -11,10 +11,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author 13125877
  */
-class Upload extends CI_Controller{
+class Upload extends MY_Controller{
    //put your code here
 
    public function __construct() {
+
+
       parent::__construct();
       $this->load->helper(array('form', 'url'));
       $this->load->helper('text');
@@ -33,11 +35,18 @@ class Upload extends CI_Controller{
       $this->data['title']       = 'Publique seu podcast aqui!';
       $this->data['error']       = '';
       $this->data['success']     = '';
+      if(!isset($_SESSION)){
+        redirect('admin/logout', 'refresh');
+      }
+
+      if($_SESSION['perfil'] !== '0'){
+          redirect('admin/logout', 'refresh');
+      }
    }
 
 public function index(){
      $this->data['conteudo'] = $this->parser->parse('telas/upload/form', $this->data, true);
-$this->parser->parse('layout/blanc', $this->data);
+     $this->parser->parse('layout/blanc', $this->data);
 }
 
 
@@ -48,21 +57,6 @@ public function do_upload(){
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   // Check if image file is a actual image or fake image
-
-
-/*
-  if(isset($_POST["submit"])) {
-      $check = getimagesize($_FILES["mp3_url"]["tmp_name"]);
-      if($check !== false) {
-          echo "File is an image - " . $check["mime"] . ".";
-          $uploadOk = 1;
-      } else {
-          echo "File is not an image.";
-          $uploadOk = 0;
-      }
-  }
-
-*/
 
   // Check if file already exists
   if (file_exists($target_file)) {

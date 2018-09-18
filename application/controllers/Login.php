@@ -51,6 +51,8 @@ $this->parser->parse('layout/blanc', $this->data);
 }
 
 
+
+
 public function username_check($str){
    if ($str == 'test'){
          $this->form_validation->set_message('username_check', 'O {field} Não pode conter a palavra "test"');
@@ -60,6 +62,11 @@ public function username_check($str){
         return TRUE;
    }
 }
+
+
+
+
+
 
 public function censurar($string = ""){
   $disallowed = array(

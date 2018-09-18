@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,9 +20,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="<?= base_url(); ?>">PODCAST</a>
+        <a class="navbar-brand js-scroll-trigger" href="<?= base_url(); ?>">{NAME}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -32,16 +30,17 @@
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#programacao">Programação</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>#programacao">Programação</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>account/#projects">Assinar</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>podcast">Podcast</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>login/#projects">Logar</a>
             </li>
-
           </ul>
         </div>
       </div>
@@ -61,9 +60,7 @@
     <!-- Projects Section -->
     <section id="programacao" class="projects-section bg-light">
       <div class="container">
-
         <!-- Featured Project Row -->
-
         <div class="row align-items-center no-gutters mb-4 mb-lg-5">
           <div class="col-xl-8 col-lg-7">
             <img class="img-fluid mb-3 mb-lg-0" src="<?= base_url(); ?>/theme/gray/img/bg-masthead.jpg" alt="">
@@ -79,7 +76,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- Contact Section -->
     <section class="contact-section bg-black">
@@ -132,27 +128,21 @@
             <i class="fab fa-github"></i>
           </a>
         </div>
-
       </div>
     </section>
-
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">
         Copyright &copy; Beit Miklat 2018
       </div>
     </footer>
-
     <!-- Bootstrap core JavaScript -->
     <script src="<?= base_url(); ?>/theme/gray/vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url(); ?>/theme/gray/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="<?= base_url(); ?>/theme/gray/vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for this template -->
     <script src="<?= base_url(); ?>/theme/gray/js/grayscale.min.js"></script>
-
   </body>
 
 </html>
