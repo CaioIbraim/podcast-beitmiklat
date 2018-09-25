@@ -153,6 +153,8 @@ public function uploadPodcast(){
         $dados['id_login'] = $_SESSION['id_login'];
         $dados['img_url']  = "uploads/img/".$_FILES['img_url']['name'];
         $dados['mp3_url']  = "uploads/mp3/".$_FILES['mp3_url']['name'];
+        $dados['dt_include'] = date("Y-m-d");
+
         $title             = strtolower($dados['title']);
         $dados['link']     =  str_replace(" ","-",$title);
 
@@ -201,7 +203,9 @@ public function alterarPodcast($id){
 
   $this->data['formData'] = $this->db->query("SELECT * FROM podcast WHERE id_podcast = '$id' ")->result_array();
 
-  $aux = 0;
+  $aux    = 0;
+  $upload = 0;
+
   if(!empty($_FILES['img_url']['name'])){
     $aux = 2;
   }
@@ -222,9 +226,9 @@ public function alterarPodcast($id){
   }
 
   if($aux == 2){
-
     $upload = parent::do_upload($_FILES, "mp3_url", "mp3");
     $upload = json_decode($upload, true);
+    $dados['mp3_url']    =    "uploads/mp3/".$_FILES['mp3_url']['name'];
     if($upload['status'] === 0){
       $this->data['error_mp3'] = $upload['msg'];
       $aux = 1;
@@ -232,19 +236,20 @@ public function alterarPodcast($id){
 
     $upload = parent::do_upload($_FILES, "img_url", "img");
     $upload = json_decode($upload, true);
+    $dados['img_url']    =    "uploads/img/".$_FILES['img_url']['name'];
     if($upload['status'] === 0){
       $this->data['error_img'] = $upload['msg'];
       $aux = 1;
     }
+
   }
 
   if($aux == 0){
         $dados =  $this->input->post();
-        $dados['id_login'] = $_SESSION['id_login'];
-        $dados['img_url']  = "uploads/img/".$_FILES['img_url']['name'];
-        $dados['mp3_url']  = "uploads/mp3/".$_FILES['mp3_url']['name'];
-        $title             = strtolower($dados['title']);
-        $dados['link']     =  str_replace(" ","-",$title);
+        $dados['id_login']   =    $_SESSION['id_login'];
+
+        $title               =  strtolower($dados['title']);
+        $dados['link']       =  str_replace(" ","-",$title);
 
         $this->load->model('Crud_Model');
         if($this->Crud_Model->update('id_podcast',$dados['id_podcast'],$dados,'podcast') > 0){
@@ -252,6 +257,8 @@ public function alterarPodcast($id){
           $this->data['ancora']       = "searchPodcast";
           $this->data['conteudo'] = $this->parser->parse('telas/default/formsuccess', $this->data, true);
         }else{
+          var_dump($dados);
+          die();
           //senão inserir retorna Erro
           $this->data['erros']       = 'Houve um erro ao atualizar os dados, por favor entre em contato.';
           $this->data['conteudo'] = $this->parser->parse('telas/upload/form_alt', $this->data, true);
